@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package com.mycompany.ejemploambitosobjetos;
+package com.mycompany.ejemplocompletounidad2.controller;
 
+import com.mycompany.ejemplocompletounidad2.entities.Alumno;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -16,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author lodiade
  */
-public class ServletScope1 extends HttpServlet {
+public class RecogeDatosServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,21 +30,19 @@ public class ServletScope1 extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            // Asignar un atributo para el alcance request
-            request.setAttribute("atributoRequest", "Prueba de atributo con alcance Request");
-            
-            // Asignar un atributo para el alcance session
-            request.getSession().setAttribute("atributoSession", "Prueba de atributo con alcance Session");
-            
-            // Asignar un atributo para el alcande application
-            this.getServletContext().setAttribute("atributoApplication", "Prueba de atributo con alcance Application");
-            
-            // Redirigimos hacia el ServletScope2
-            RequestDispatcher rd = this.getServletContext().getRequestDispatcher("/ServletScope2");
-            rd.forward(request, response);
-        }
+        // Crear el objeto
+        Alumno alumno = new Alumno();
+        // Inicializamos los datos del objetos con los valores del formulario JSP
+        alumno.setNombre(request.getParameter("nombreP"));
+        alumno.setPrimerApellido(request.getParameter("primerApellidoP"));
+        alumno.setSegundoApellido(request.getParameter("segundoApellidoP"));
+        alumno.setEdad(Integer.valueOf(request.getParameter("edadP")));
+        // Pasamos al request el objeto creado
+        request.setAttribute("alumnoAtrib", alumno);
+        // Instanciamos el requestDispatcher para redireccionar al JSP de salida
+        RequestDispatcher rd = this.getServletContext().getRequestDispatcher("/mostrarDatos.jsp");
+        // Redireccionamos
+        rd.forward(request, response);        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
