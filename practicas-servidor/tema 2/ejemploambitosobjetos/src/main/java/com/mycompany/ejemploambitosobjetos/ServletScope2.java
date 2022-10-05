@@ -43,6 +43,9 @@ public class ServletScope2 extends HttpServlet {
             out.println("Atributo Session: " + (String) request.getSession().getAttribute("atributoSession"));
             out.println("<br>");            
             out.println("Atributo Application: " + (String) this.getServletContext().getAttribute("atributoApplication"));
+            out.println("<br>");             
+            out.println("Atributo Application: " + (int) this.getServletContext().getAttribute("contador"));
+            this.getServletContext().setAttribute("contador", (int)this.getServletContext().getAttribute("contador") + 1);
             out.println("<br>");       
             out.println("Pulse <a href=\"./ServletScope3\">aquí</a> para pasar a ver los atributos a la siguiente página.");
             out.println("</body>");

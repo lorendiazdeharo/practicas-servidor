@@ -9,3 +9,5 @@
 /practicas-servidor/tema 2/ejemploambitosobjetos/target/
 .DS_Store
 /practicas-servidor/tema 2/ejemplocompletounidad2/target/
+*.war
+*.jar

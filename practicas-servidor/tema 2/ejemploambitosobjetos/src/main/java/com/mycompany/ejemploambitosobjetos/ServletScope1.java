@@ -18,6 +18,15 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ServletScope1 extends HttpServlet {
 
+    @Override
+    public void init() throws ServletException {
+        super.init(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        this.getServletContext().setAttribute("contador", 1);
+    }
+    
+    
+            
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
