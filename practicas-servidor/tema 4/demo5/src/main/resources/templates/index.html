@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title th:utext="${titulo}" />
+</head>
+
+<body>
+	<h1 th:utext="${titulo}" />
+	<a th:href="@{/clientes}">Gestión de clientes</a>
+	<br />
+	<br />
+
+	<div><p th:utext="${nombreAsignatura}"/></div>
+</body>
+</html>

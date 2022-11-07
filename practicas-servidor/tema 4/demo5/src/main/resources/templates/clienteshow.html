@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Visualizar cliente</title>
+</head>
+
+<body>
+	<h1>Visualizar cliente</h1> 
+	<table border="0">
+		<tr>
+			<td>ID</td>
+			<td>:</td>
+			<td th:utext="${clienteDTO.id}">...</td>
+		</tr>
+		<tr>
+			<td>Nombre</td>
+			<td>:</td>
+			<td th:utext="${clienteDTO.nombre}">...</td>
+		</tr>
+		<tr>
+			<td>Apellidos</td>
+			<td>:</td>
+			<td th:utext="${clienteDTO.apellidos}">...</td>
+		</tr>
+		<tr>
+			<td>NIF</td>
+			<td>:</td>
+			<td th:utext="${clienteDTO.nif}">...</td>
+		</tr>
+		<tr>
+			<td>Correo electrónico</td>
+			<td>:</td>
+			<td th:utext="${clienteDTO.email}">...</td>
+		</tr>
+		<tr>
+			<td>Clave seguridad</td>
+			<td>:</td>
+			<td th:utext="${clienteDTO.claveSeguridad}">...</td>
+		</tr>
+		<tr>
+			<td>Recomendación</td>
+			<td>:</td>
+			<td th:utext="${clienteDTO.recomendacionDTO.observaciones}">...</td>
+		</tr>
+	</table>
+	<br />
+	<br />	
+	<a th:href="@{/clientes}">Volver a la lista de clientes</a>	
+</html>
