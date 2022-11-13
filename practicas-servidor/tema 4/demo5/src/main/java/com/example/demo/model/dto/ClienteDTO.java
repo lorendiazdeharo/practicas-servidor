@@ -3,13 +3,13 @@ package com.example.demo.model.dto;
 import java.io.Serializable;
 
 import com.example.demo.repository.entity.Cliente;
+import com.example.demo.repository.entity.Recomendacion;
 
 import lombok.Data;
-import lombok.ToString;
 
 @Data
 public class ClienteDTO implements Serializable{
-	
+
 	private static final long serialVersionUID = 1L;
 	private Long id;
 	private String nif;
@@ -17,12 +17,11 @@ public class ClienteDTO implements Serializable{
 	private String apellidos;
 	private String claveSeguridad;
 	private String email;
-	@ToString.Exclude
 	private RecomendacionDTO recomendacionDTO;	
 	
-	//Convierte una entidad a un objeto DTO
+	// Convertir una entidad a un DTO
 	public static ClienteDTO convertToDTO(Cliente cliente) {
-		// Creamos el clienteDTO y asignamos los valores basicos
+		
 		ClienteDTO clienteDTO = new ClienteDTO();
 		clienteDTO.setId(cliente.getId());
 		clienteDTO.setNif(cliente.getNif());
@@ -30,16 +29,17 @@ public class ClienteDTO implements Serializable{
 		clienteDTO.setApellidos(cliente.getApellidos());
 		clienteDTO.setClaveSeguridad(cliente.getClaveSeguridad());
 		clienteDTO.setEmail(cliente.getEmail());
-		// Asignamos la recomendacionDTO pasandole el clienteDTO como parametrio
-		clienteDTO.setRecomendacionDTO(RecomendacionDTO.convertToDTO(cliente.getRecomendacion(), clienteDTO));
 		
-		// Retorna el DTO
+		RecomendacionDTO rec = RecomendacionDTO.converToDTO(cliente.getRecomendacion(), clienteDTO);
+		clienteDTO.setRecomendacionDTO(rec);
+		
 		return clienteDTO;
+		
 	}
 	
-	// Convierte un objeto DTO a una entidad
+	// Convertir un DTO a una entidad
 	public static Cliente convertToEntity(ClienteDTO clienteDTO) {
-		// Creamos la entidad cliente y le asignamos los valores
+	
 		Cliente cliente = new Cliente();
 		cliente.setId(clienteDTO.getId());
 		cliente.setNif(clienteDTO.getNif());
@@ -47,16 +47,19 @@ public class ClienteDTO implements Serializable{
 		cliente.setApellidos(clienteDTO.getApellidos());
 		cliente.setClaveSeguridad(clienteDTO.getClaveSeguridad());
 		cliente.setEmail(clienteDTO.getEmail());
-		// Asignamos la recomendacion pasandole el cliente como parametro
-		cliente.setRecomendacion(RecomendacionDTO.convertToEntity(clienteDTO.getRecomendacionDTO(), cliente));
 		
-		// Retorna la entidad
+		Recomendacion rec = RecomendacionDTO.convertToEntity(clienteDTO.getRecomendacionDTO(), cliente);
+		cliente.setRecomendacion(rec);
+		
 		return cliente;
+				
 	}
-	
+
 	// Constructor vacio
 	public ClienteDTO() {
 		super();
 		this.recomendacionDTO = new RecomendacionDTO();
 	}
+	
+	
 }

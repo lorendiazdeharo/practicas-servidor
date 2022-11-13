@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,93 +18,104 @@ import com.example.demo.service.ClienteService;
 @Controller
 public class ClienteController {
 
-	private static final Logger log = LoggerFactory.getLogger(ClienteController.class);	
+	private static final Logger log = LoggerFactory.getLogger(ClienteController.class);
 	
 	@Autowired
 	private ClienteService clienteService;
 	
-	@GetMapping("/clientes/new")
-	public ModelAndView newCliente() {
-		log.info("ClienteController - newCliente: Mostramos la pagina de creacion de cliente");
-		
-	    ModelAndView mav = new ModelAndView("clienteForm");
-	    ClienteDTO clienteDTO = new ClienteDTO();
-	    mav.addObject("clienteDTO", clienteDTO);
-	    mav.addObject("add", true);
-	    
-	    return mav;		
-	}
-	
-	@PostMapping("/clientes/save")
-	public ModelAndView saveCliente(@ModelAttribute("clienteDTO") ClienteDTO clienteDTO) {
-		log.info("ClienteController - saveCliente: Salvamos los datos del cliente y mostramos de nuevo la lista de clientes");
-	    
-	    // Invocamos a la capa de servicios para que almacene los datos del cliente
-	    clienteService.save(clienteDTO);
-	    		
-		// Redireccionamos para volver a invocar al metodo que escucha /clientes
-	    ModelAndView mav = new ModelAndView("redirect:/clientes");	    	    
-	    return mav;		
-	}	
-	
-	@GetMapping("/clientes/{idCliente}")
-	public ModelAndView showClienteById(@PathVariable Long idCliente) {
-		
-		log.info("ClienteController - showClienteById: obtenemos el cliente con id: " + String.valueOf(idCliente));
-		
-	    ModelAndView mav = new ModelAndView("clienteShow");
-	    
-	    // Obtenemos el cliente y lo pasamos al modelo
-	    ClienteDTO clienteDTO = new ClienteDTO();
-	    clienteDTO.setId(idCliente);
-	    clienteDTO = clienteService.findById(clienteDTO);
-	    mav.addObject("clienteDTO", clienteDTO);
-	    
-	    return mav;
-	}
-	
+	// Listar los clientes
 	@GetMapping("/clientes")
-	public ModelAndView getClientes() {
-		log.info("ClienteController - getClientes: obtenemos la lista de clientes");
+	public ModelAndView findAll() {
 		
-	    ModelAndView mav = new ModelAndView("clientes");	    
-	    List<ClienteDTO> lista = clienteService.findAll();
-	    mav.addObject("listaClientes", lista);
-	    
-	    return mav;		
+		log.info("ClienteController - findAll: Mostramos todos los clientes");
+		
+		ModelAndView mav = new ModelAndView("clientes");
+		List<ClienteDTO> listaClientesDTO = clienteService.findAll();
+		mav.addObject("listaClientesDTO", listaClientesDTO);
+		
+		return mav;
+		
 	}
 	
+	// Visualizar la informacion de un cliente
+	@GetMapping("/clientes/{idCliente}")
+	public ModelAndView findById(@PathVariable("idCliente") Long idCliente) {
+		
+		log.info("ClienteController - findById: Mostramos la informacion del cliente:" + idCliente);
+		
+		// Obtenemos el cliente y lo pasamos al modelo
+		ClienteDTO clienteDTO = new ClienteDTO();
+		clienteDTO.setId(idCliente);
+		clienteDTO = clienteService.findById(clienteDTO);
+		
+		ModelAndView mav = new ModelAndView("clienteshow");
+		mav.addObject("clienteDTO", clienteDTO);
+		
+		return mav;
+	}
+	
+	
+	// Alta de clientes
+	@GetMapping("/clientes/add")
+	public ModelAndView add() {
+		
+		log.info("ClienteController - add: Anyadimos un nuevo cliente");
+		
+		ModelAndView mav = new ModelAndView("clienteform");
+		mav.addObject("clienteDTO", new ClienteDTO());
+		mav.addObject("add", true);
+		
+		return mav;
+	}
+	
+	// Salvar clientes
+	@PostMapping("/clientes/save")
+	public ModelAndView save(@ModelAttribute("clienteDTO") ClienteDTO clienteDTO) {
+		
+		log.info("ClienteController - save: Salvamos los datos del cliente:" + clienteDTO.toString());
+		
+		// Invocamos a la capa de servicios para que almacene los datos del cliente
+		clienteService.save(clienteDTO);
+		
+		// Redireccionamos para volver a invocar el metodo que escucha /clientes
+		ModelAndView mav = new ModelAndView("redirect:/clientes");		
+		return mav;
+	}
+	
+	// Actualizar la informacion de un cliente 
 	@GetMapping("/clientes/update/{idCliente}")
-	public ModelAndView updateCliente(@PathVariable Long idCliente) {
+	public ModelAndView update(@PathVariable("idCliente") Long idCliente) {
 		
-		log.info("ClienteController - updateCliente: actualizamos el cliente " + String.valueOf(idCliente));
+		log.info("ClienteController - update: Modificamos el cliente: " + idCliente);
 		
-	    ModelAndView mav = new ModelAndView("clienteForm");
-	    
-	    // Obtenemos el cliente y lo pasamos al modelo para ser actualizado
-	    ClienteDTO clienteDTO = new ClienteDTO();
-	    clienteDTO.setId(idCliente);
-	    clienteDTO = clienteService.findById(clienteDTO);
-	    mav.addObject("clienteDTO", clienteDTO);
-	    mav.addObject("add", false);
-	    
-	    return mav;
+		// Obtenemos el cliente y lo pasamos al modelo para ser actualizado
+		ClienteDTO clienteDTO = new ClienteDTO();
+		clienteDTO.setId(idCliente);
+		clienteDTO = clienteService.findById(clienteDTO);		
+				
+		ModelAndView mav = new ModelAndView("clienteform");
+		mav.addObject("clienteDTO", clienteDTO);
+		mav.addObject("add", false);
+		
+		return mav;
 	}	
 	
-	@GetMapping("/clientes/delete/{idCliente}")  
-	public ModelAndView deleteCliente(@PathVariable Long idCliente)  {  
+	
+	// Borrar un cliente
+	@GetMapping("/clientes/delete/{idCliente}")
+	public ModelAndView delete(@PathVariable("idCliente") Long idCliente) {
 		
-		log.info("ClienteController - deleteCliente: borramos el cliente " + String.valueOf(idCliente));
+		log.info("ClienteController - delete: Borramos el cliente:" + idCliente);
+		
+		// Creamos un cliente y le asignamos el id. Este cliente es el que se va a borrar
+		ClienteDTO clienteDTO = new ClienteDTO();
+		clienteDTO.setId(idCliente);
+		clienteService.delete(clienteDTO);
 		
 		// Redireccionamos para volver a invocar al metodo que escucha /clientes
-	    ModelAndView mav = new ModelAndView("redirect:/clientes");
-	    
-	    // Creamos un cliente y le asignamos el id. Este cliente es el que se va a borrar
-	    ClienteDTO clienteDTO = new ClienteDTO();
-	    clienteDTO.setId(idCliente);
-	    clienteDTO = clienteService.delete(clienteDTO);
-	    mav.addObject("clienteDTO", clienteDTO);
-	    
-	    return mav;
-	}  	
+		ModelAndView mav = new ModelAndView("redirect:/clientes");
+		
+		return mav;
+	}	
+	
 }

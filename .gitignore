@@ -11,3 +11,4 @@
 /practicas-servidor/tema 2/ejemplocompletounidad2/target/
 *.war
 *.jar
+*.class

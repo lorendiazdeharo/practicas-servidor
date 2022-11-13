@@ -7,42 +7,43 @@
 <body>
 	<div>
 		<br>
-		<h2 th:if="${listaClientes.isEmpty()}">No hay clientes</h2>
-		<div th:if="${!listaClientes.isEmpty()}">
+		<h2 th:if="${listaClientesDTO.isEmpty()}">No hay clientes</h2>
+		<div th:if="${!listaClientesDTO.isEmpty()}">
 			<h2>Mantenimiento de clientes</h2>
-			<br>
 			<table border="1">
 				<thead>
 					<tr>
-						<th>id</th>
-						<th>Nombre</th>
-						<th>Apellidos</th>
-						<th>NIF</th>
-						<th>Correo electrónico</th>
-						<th>Editar</th>
-						<th>Eliminar</th>
+						<td>id</td>
+						<td>Nombre</td>
+						<td>Apellidos</td>
+						<td>NIF</td>
+						<td>Correo electrónico</td>
+						<td>Editar</td>
+						<td>Eliminar</td>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="cliente : ${listaClientes}">
-						<td><a th:href="@{/clientes/{idCliente}(idCliente=${cliente.id})}" 
-								th:utext="${cliente.id}"></a></td>
-						<td th:utext="${cliente.nombre}">...</td>
-						<td th:utext="${cliente.apellidos}">...</td>
-						<td th:utext="${cliente.nif}">...</td>
-						<td th:utext="${cliente.email}">...</td>
-						<td><a th:href="@{/clientes/update/{idCliente}(idCliente=${cliente.id})}">Editar</a></td>
-						<td><a th:href="@{/clientes/delete/{idCliente}(idCliente=${cliente.id})}">Eliminar</a></td>
+					<tr th:each="item : ${listaClientesDTO}">
+						<td><a
+							th:href="@{/clientes/{idCliente}(idCliente=${item.id})}"
+							th:text="${item.id}"></a></td>
+						<td th:text="${item.nombre}" />
+						<td th:text="${item.apellidos}" />
+						<td th:text="${item.nif}" />
+						<td th:text="${item.email}" />
+						<td><a
+							th:href="@{/clientes/update/{idCliente}(idCliente=${item.id})}" />Editar</a></td>
+						<td><a
+							th:href="@{/clientes/delete/{idCliente}(idCliente=${item.id})}" />Eliminar</a></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		<br>
-		<div>
-			<a th:href="@{/clientes/new}" >Agregar</a>
-			</br>
-			<a th:href="@{/}">Volver al índice</a>
-		</div>
+	</div>
+	<br>
+	<div>
+		<a th:href="@{/clientes/add}">Nuevo cliente</a> <br> <a th:href="@{/}">Volver
+			al inicio</a>
 	</div>
 </body>
 </html>

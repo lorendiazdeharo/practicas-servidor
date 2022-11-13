@@ -17,27 +17,26 @@ public class RecomendacionDTO implements Serializable{
 	@ToString.Exclude
 	private ClienteDTO clienteDTO;
 	
-	//Convierte una entidad a un objeto DTO
-	public static RecomendacionDTO convertToDTO(Recomendacion recomendacion, ClienteDTO clienteDTO) {
-		// Creamos el objeto recomendacionDTO y asignamos los valores basicos
+	// Convertir de entidad a DTO
+	public static RecomendacionDTO converToDTO(Recomendacion recomendacion, ClienteDTO clienteDTO) {
+		
 		RecomendacionDTO recomendacionDTO = new RecomendacionDTO();
 		recomendacionDTO.setId(recomendacion.getId());
 		recomendacionDTO.setObservaciones(recomendacion.getObservaciones());
 		recomendacionDTO.setClienteDTO(clienteDTO);
-
-		// Retorna el DTO		
+		
 		return recomendacionDTO;
 	}
-	
-	// Convierte un objeto DTO a una entidad
+
+	// Convertir de DTO a entidad
 	public static Recomendacion convertToEntity(RecomendacionDTO recomendacionDTO, Cliente cliente) {
-		// Creamos la entidad Recomendacion y le asignamos los valores		
+		
 		Recomendacion recomendacion = new Recomendacion();
 		recomendacion.setId(recomendacionDTO.getId());
 		recomendacion.setObservaciones(recomendacionDTO.getObservaciones());
 		recomendacion.setCliente(cliente);
 		
-		// Retorna el entity		
 		return recomendacion;
-	}
+	}	
+
 }
