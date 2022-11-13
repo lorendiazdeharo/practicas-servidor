@@ -44,7 +44,7 @@
 			<tr>
 				<td>Recomendación</td>
 				<td>:</td>
-				<td> <input type="text" th:field="*{recomendacionDTO.observaciones}" /> </td>
+				<td> <textarea th:field="*{recomendacionDTO.observaciones}" rows="4" cols="50" /> </td>
 			</tr>
 		</table>
 		<input type="submit" th:value="${add} ? 'Nuevo' : 'Actualizar'" />		
