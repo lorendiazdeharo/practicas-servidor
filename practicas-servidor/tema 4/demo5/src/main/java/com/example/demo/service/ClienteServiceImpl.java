@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,13 +26,18 @@ public class ClienteServiceImpl implements ClienteService{
 		
 		log.info("ClienteServiceImpl - findAll: Lista de todos los cliente");
 		
+		/*
 		List<ClienteDTO> listaClientesDTO = new ArrayList<ClienteDTO>();
 		List<Cliente> listaClientes = clienteRepository.findAll();
 		for(int i=0; i < listaClientes.size();i++) {
 			Cliente cliente = listaClientes.get(i);
 			ClienteDTO clienteDTO = ClienteDTO.convertToDTO(cliente);
 			listaClientesDTO.add(clienteDTO);
-		}
+		} */
+		List<ClienteDTO> listaClientesDTO = clienteRepository.findAll()
+				.stream()
+				.map(p->ClienteDTO.convertToDTO(p))
+				.collect(Collectors.toList());
 		
 		return listaClientesDTO;
 	}
