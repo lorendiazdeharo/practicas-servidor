@@ -111,7 +111,12 @@ public class ClienteRepositoryImpl implements ClienteRepository{
 			int posicion = datos.indexOf(cliente);
 			datos.set(posicion, cliente);			
 		}else {
-			Long id = datos.get(datos.size() - 1).getId() + 1;
+			// Inicializamos el valor del id en caso de que no tenga dartos
+			Long id = Long.valueOf(1);
+			// Comprobamos que tiene datos para asignar un nuevo id. Si no tiene se asigna 1
+			if(datos.size()>0) {
+				id = datos.get(datos.size() - 1).getId() + 1;
+			}
 			cliente.setId(id);
 			cliente.getRecomendacion().setId(id);
 			datos.add(cliente);
