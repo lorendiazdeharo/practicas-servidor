@@ -1,0 +1,174 @@
+INSERT INTO clientesdirecciones (id,idcliente,iddireccion)
+VALUES
+  (1,17,44),
+  (2,3,20),
+  (3,9,26),
+  (4,5,64),
+  (5,9,6),
+  (6,1,33),
+  (7,18,37),
+  (8,14,61),
+  (9,19,41),
+  (10,4,43);
+INSERT INTO clientesdirecciones (id,idcliente,iddireccion)
+VALUES
+  (11,13,28),
+  (12,3,54),
+  (13,14,18),
+  (14,2,28),
+  (15,12,8),
+  (16,9,64),
+  (17,2,61),
+  (18,14,12),
+  (19,17,75),
+  (20,17,14);
+COMMIT;
+INSERT INTO clientesdirecciones (id,idcliente,iddireccion)
+VALUES
+  (21,2,30),
+  (22,10,22),
+  (23,13,51),
+  (24,3,21),
+  (25,16,13),
+  (26,17,36),
+  (27,20,33),
+  (28,11,47),
+  (29,14,29);
+INSERT INTO clientesdirecciones (id,idcliente,iddireccion)
+VALUES
+  (30,12,21),
+  (31,12,56),
+  (32,17,10),
+  (33,15,5),
+  (34,10,16),
+  (35,6,1),
+  (36,11,74),
+  (37,3,72),
+  (38,12,56),
+  (39,16,23);
+COMMIT;
+INSERT INTO clientesdirecciones (id,idcliente,iddireccion)
+VALUES
+  (40,5,46),
+  (41,10,14),
+  (42,9,26),
+  (43,5,43),
+  (44,17,29),
+  (45,15,37),
+  (46,17,63),
+  (47,19,18),
+  (48,15,24),
+  (49,12,31);
+INSERT INTO clientesdirecciones (id,idcliente,iddireccion)
+VALUES
+  (50,5,6),
+  (51,10,31),
+  (52,10,45),
+  (53,12,21),
+  (54,4,24),
+  (55,1,78),
+  (56,19,35),
+  (57,5,76),
+  (58,5,48),
+  (59,2,72);
+COMMIT;
+INSERT INTO clientesdirecciones (id,idcliente,iddireccion)
+VALUES
+  (60,16,9),
+  (61,12,11),
+  (62,3,53),
+  (63,2,41),
+  (64,7,76),
+  (65,12,42),
+  (66,2,27),
+  (67,19,52),
+  (68,15,44),
+  (69,16,21);
+INSERT INTO clientesdirecciones (id,idcliente,iddireccion)
+VALUES
+  (70,3,50),
+  (71,12,52),
+  (72,15,57),
+  (73,9,66),
+  (74,5,37),
+  (75,12,30),
+  (76,4,7),
+  (77,1,42),
+  (78,11,51),
+  (79,4,70);
+COMMIT;
+INSERT INTO clientesdirecciones (id,idcliente,iddireccion)
+VALUES
+  (80,10,70),
+  (81,6,18),
+  (82,11,22),
+  (83,13,76),
+  (84,16,6),
+  (85,10,11),
+  (86,12,8),
+  (87,9,8),
+  (88,18,78),
+  (89,1,53);
+INSERT INTO clientesdirecciones (id,idcliente,iddireccion)
+VALUES
+  (90,17,11),
+  (91,16,61),
+  (92,14,61),
+  (93,13,30),
+  (94,5,3),
+  (95,4,70),
+  (96,15,8),
+  (97,19,38),
+  (98,6,35),
+  (99,9,50);
+COMMIT;
+INSERT INTO clientesdirecciones (id,idcliente,iddireccion)
+VALUES
+  (100,5,21),
+  (101,6,75),
+  (102,18,20),
+  (103,20,40),
+  (104,13,10),
+  (105,8,57),
+  (106,17,47),
+  (107,6,79),
+  (108,12,6),
+  (109,10,11);
+INSERT INTO clientesdirecciones (id,idcliente,iddireccion)
+VALUES
+  (110,9,40),
+  (111,19,51),
+  (112,19,79),
+  (113,17,62),
+  (114,13,48),
+  (115,8,56),
+  (116,10,6),
+  (117,5,41),
+  (118,5,77),
+  (119,3,34);
+COMMIT;
+INSERT INTO clientesdirecciones (id,idcliente,iddireccion)
+VALUES
+  (120,6,41),
+  (121,20,55),
+  (122,15,68),
+  (123,7,56),
+  (124,17,54),
+  (125,2,15),
+  (126,7,3),
+  (127,16,73),
+  (128,19,67),
+  (129,11,53);
+INSERT INTO clientesdirecciones (id,idcliente,iddireccion)
+VALUES
+  (130,8,25),
+  (131,2,79),
+  (132,5,13),
+  (133,19,77),
+  (134,10,5),
+  (135,8,30),
+  (136,10,69),
+  (137,17,17),
+  (138,15,78),
+  (139,2,46);
+COMMIT;
