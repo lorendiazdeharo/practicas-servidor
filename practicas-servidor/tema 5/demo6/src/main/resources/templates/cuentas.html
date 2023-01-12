@@ -29,15 +29,15 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="cuenta : ${listaCuentasDTO}">
-						<td th:utext="${cuenta.id}">...</td>
-						<td th:utext="${cuenta.banco}">...</td>
-						<td th:utext="${cuenta.sucursal}">...</td>
-						<td th:utext="${cuenta.dc}">...</td>
-						<td th:utext="${cuenta.numeroCuenta}">...</td>
-						<td th:utext="${cuenta.saldoActual}">...</td>
-						<td><a th:href="@{/clientes/{idCliente}/cuentas/movimientos/(idCliente=${clienteDTO.id})}">Visualizar movimientos</a></td>
-						<td><a th:href="@{/clientes/{idCliente}/cuentas/delete/{idCuenta}(idCliente=${clienteDTO.id},idCuenta=${cuenta.id})}">Eliminar</a></td>
+					<tr th:each="cuentaDTO : ${listaCuentasDTO}">
+						<td th:utext="${cuentaDTO.id}">...</td>
+						<td th:utext="${cuentaDTO.banco}">...</td>
+						<td th:utext="${cuentaDTO.sucursal}">...</td>
+						<td th:utext="${cuentaDTO.dc}">...</td>
+						<td th:utext="${cuentaDTO.numeroCuenta}">...</td>
+						<td th:utext="${cuentaDTO.saldoActual}">...</td>
+						<td><a th:href="@{/clientes/{idCliente}/cuentas/movimientos (idCliente=${clienteDTO.id})}">Visualizar movimientos</a></td>
+						<td><a th:href="@{/clientes/{idCliente}/cuentas/delete/{idCuenta} (idCliente=${clienteDTO.id},idCuenta=${cuentaDTO.id})}">Eliminar</a></td>
 					</tr>
 				</tbody>
 			</table>

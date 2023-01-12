@@ -15,7 +15,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "cuentas")
-public class Cuenta {
+public class Cuenta implements Comparable {
 	
 	@Id
 	@GeneratedValue( strategy=GenerationType.IDENTITY)
@@ -50,5 +50,14 @@ public class Cuenta {
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		Cuenta c = (Cuenta)o;
+		if(this.id == c.id) 
+			return 0;
+		else
+			return 1; 
 	}
 }

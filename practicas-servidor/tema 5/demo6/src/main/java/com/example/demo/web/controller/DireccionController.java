@@ -1,5 +1,8 @@
 package com.example.demo.web.controller;
 
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.dto.ClienteDTO;
+import com.example.demo.model.dto.ClienteDireccionDTO;
 import com.example.demo.model.dto.DireccionDTO;
 import com.example.demo.service.ClienteService;
 import com.example.demo.service.DireccionService;
@@ -38,10 +42,10 @@ public class DireccionController {
 		clienteDTO.setId(idCliente);
 		clienteDTO = clienteService.findById(clienteDTO);
 		// Obtenemos la lista de direcciones del cliente
-		List<DireccionDTO> listaDireccionesDTO = direccionService.findAllByCliente(clienteDTO);
+		List<ClienteDireccionDTO> listaClientesDireccionesDTO = direccionService.findAllByCliente(clienteDTO);
 		// Pasamos los datos al modelo
 		ModelAndView mav = new ModelAndView("direcciones");
-		mav.addObject("listaDireccionesDTO", listaDireccionesDTO);
+		mav.addObject("listaClientesDireccionesDTO", listaClientesDireccionesDTO);
 		mav.addObject("clienteDTO", clienteDTO);
 		// retornamos el ModelAndView
 		return mav;
@@ -71,9 +75,14 @@ public class DireccionController {
 		ClienteDTO clienteDTO = new ClienteDTO();
 		clienteDTO.setId(idCliente);
 		clienteDTO = clienteService.findById(clienteDTO);
-		// Anyadimos al cliente la direccion. Puede haber varias direcciones ya en el
-		// clienteDTO
-		clienteDTO.getListaDireccionesDTO().add(direccionDTO);
+		// Creamos una entidad que soporta la relacion n a n
+		ClienteDireccionDTO cdDTO = new ClienteDireccionDTO();
+		cdDTO.setClienteDTO(clienteDTO);
+		cdDTO.setDireccionDTO(direccionDTO);
+		// Asignamos el timestamp (fecha y hora actual)
+		Timestamp ts = Timestamp.from(Instant.now());
+		cdDTO.setFechaAlta(ts);
+		clienteDTO.getListaClientesDireccionesDTO().add(cdDTO);
 		// Anyadimos a la direccion el cliente. En este momento solo habra un clienteDTO
 		direccionDTO.getListaClientesDTO().add(clienteDTO);
 		direccionService.save(direccionDTO);

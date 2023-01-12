@@ -29,7 +29,13 @@ public class ClienteRepositoryImpl implements ClienteRepository{
 	public void save(Cliente cliente) {
 		if(cliente.getId() != null) {
 			int posicion = datos.indexOf(cliente);
-			datos.set(posicion, cliente);			
+			Cliente a = datos.get(posicion);
+			a.setNombre(cliente.getNombre());
+			a.setApellidos(cliente.getApellidos());
+			a.setNif(cliente.getNif());
+			a.setClaveSeguridad(cliente.getClaveSeguridad());
+			a.setEmail(cliente.getEmail());
+			a.setRecomendacion(cliente.getRecomendacion());			
 		}else {
 			// Inicializamos el valor del id en caso de que no tenga dartos
 			Long id = Long.valueOf(1);

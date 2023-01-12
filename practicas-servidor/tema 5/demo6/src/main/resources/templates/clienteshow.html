@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="UTF-8">
-	<title>Visualizar cliente</title>
+<meta charset="UTF-8">
+<title>Visualizar cliente</title>
 </head>
 <body>
 	<h1>Visualizar cliente</h1>
@@ -17,27 +17,32 @@
 			<td>Nombre</td>
 			<td>:</td>
 			<td th:text="${clienteDTO.nombre}"></td>
-		</tr>		
+		</tr>
 		<tr>
 			<td>Apellidos</td>
 			<td>:</td>
 			<td th:text="${clienteDTO.apellidos}"></td>
-		</tr>		
+		</tr>
 		<tr>
 			<td>NIF</td>
 			<td>:</td>
 			<td th:text="${clienteDTO.nif}"></td>
-		</tr>		
+		</tr>
 		<tr>
 			<td>Correo electrónico</td>
 			<td>:</td>
 			<td th:text="${clienteDTO.email}"></td>
-		</tr>	
+		</tr>
 		<tr>
 			<td>Clave seguridad</td>
 			<td>:</td>
 			<td th:text="${clienteDTO.claveSeguridad}"></td>
-		</tr>			
+		</tr>
+		<tr>
+			<td>Fecha Nacimiento</td>
+			<td>:</td>
+			<td th:text="${#dates.format(clienteDTO.fechaNacimiento, 'dd/MM/yyyy')}"></td>
+		</tr>
 		<tr>
 			<td>Recomendación</td>
 			<td>:</td>

@@ -1,5 +1,7 @@
 package com.example.demo.repository.entity;
 
+import java.util.Objects;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -22,8 +24,25 @@ public class Recomendacion {
 	
 	private String observaciones;
 	
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "idcliente")
 	@ToString.Exclude
 	private Cliente cliente;
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Recomendacion other = (Recomendacion) obj;
+		return Objects.equals(id, other.id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
 }

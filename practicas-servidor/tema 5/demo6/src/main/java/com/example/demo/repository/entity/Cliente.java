@@ -1,6 +1,7 @@
 package com.example.demo.repository.entity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -18,6 +19,8 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import jakarta.persistence.JoinColumn;
 import lombok.Data;
 import lombok.ToString;
@@ -44,12 +47,21 @@ public class Cliente {
 
 	private String email;
 
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "cliente")
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "cliente")
 	@ToString.Exclude
 	private Recomendacion recomendacion;
 
+	/*
+	 * Mapeo de la lista de cuentas con List
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "cliente")
+	@ToString.Exclude
 	private List<Cuenta> listaCuentas;
+    */
+	
+	// Mapeo de la lista de cuentas con Set
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "cliente")
+	@ToString.Exclude
+	private Set<Cuenta> listaCuentas;	
 
 	/*
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -65,6 +77,7 @@ public class Cliente {
 	private List<Direccion> listaDirecciones;
 	*/
 
+	/*
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	// Tabla que mantiene la relacion N-N
 	@JoinTable(
@@ -76,6 +89,19 @@ public class Cliente {
 			inverseJoinColumns = @JoinColumn(name = "iddireccion"))
 	@ToString.Exclude
 	private Set<Direccion> listaDirecciones;
+	*/
+	
+	
+	// Mapeo con la entidad ClienteDireccion con Set
+	// IMPORTATE: Poner a LAZY la relacion en este caso, ya que es la relacion N a N
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "cliente")
+	@ToString.Exclude
+	private Set<ClienteDireccion> listaClientesDirecciones;		
+	
+	// Atributo que almacena la fecha de nacimiento
+	@Temporal(TemporalType.DATE)
+	@Column(name = "fechanacimiento")
+	private Date fechaNacimiento;
 	
 	@Override
 	public boolean equals(Object obj) {
@@ -97,7 +123,10 @@ public class Cliente {
 	public Cliente() {
 		super();
 		this.recomendacion = new Recomendacion();
+		//this.listaCuentas = new ArrayList<Cuenta>();		
 		//this.listaDirecciones = new ArrayList<Direccion>();
-		this.listaDirecciones = new HashSet<Direccion>();
+		this.listaCuentas = new HashSet<Cuenta>();
+		//this.listaDirecciones = new HashSet<Direccion>();
+		this.listaClientesDirecciones = new HashSet<ClienteDireccion>();
 	}
 }

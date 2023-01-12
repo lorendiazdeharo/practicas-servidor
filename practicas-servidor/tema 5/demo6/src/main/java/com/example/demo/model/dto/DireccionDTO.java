@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.demo.repository.entity.Cliente;
+import com.example.demo.repository.entity.ClienteDireccion;
 import com.example.demo.repository.entity.Direccion;
 
 import lombok.Data;
@@ -46,7 +47,14 @@ public class DireccionDTO implements Serializable {
 		// No tiene sentido mapear todos los clientes que tiene la direccion, puesto que
 		// al mapear cada cliente volveriamos a mapear sus direcciones, y así
 		// sucesivamente.
-		direccion.getListaClientes().add(cliente);
+		//direccion.getListaClientes().add(cliente);
+		
+		// Creamos una entidad de ClienteDireccion y asignamos la relacion de ambos.
+		ClienteDireccion cd = new ClienteDireccion();
+		cd.setCliente(cliente);
+		cd.setDireccion(direccion);
+		direccion.getListaClientesDirecciones().add(cd);
+		cliente.getListaClientesDirecciones().add(cd);		
 
 		return direccion;
 

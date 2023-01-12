@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.model.dto.ClienteDTO;
 import com.example.demo.model.dto.CuentaDTO;
+import com.example.demo.repository.dao.ClienteRepository;
 import com.example.demo.repository.dao.CuentaRepository;
 import com.example.demo.repository.entity.Cliente;
 import com.example.demo.repository.entity.Cuenta;
@@ -21,6 +23,9 @@ public class CuentaServiceImpl implements CuentaService {
 
 	@Autowired
 	private CuentaRepository cuentaRepository;
+	
+	@Autowired
+	private ClienteRepository clienteRepository;	
 
 	@Override
 	public List<CuentaDTO> findAllByCliente(ClienteDTO clienteDTO) {
@@ -38,6 +43,39 @@ public class CuentaServiceImpl implements CuentaService {
 		// Devolvemos la lista de DTO's
 		return listaResultadoDTO;
 	}
+	
+	/* 
+	 * Metodo 1 de borrado de un hijo en una relacion 1 a N: 
+	 * ejecutamos directamente el borrado por medio del id
+	 */
+	@Override
+	public void delete(CuentaDTO cuentaDTO) {
+		log.info("CuentaServiceImpl - delete: Metodo 1: borramos la cuenta: " + cuentaDTO.toString());
+ 
+		cuentaRepository.deleteById(cuentaDTO.getId());		
+	}
+
+	/* 
+	 * Metodo 2 de borrado de un hijo en una relacion 1 a N: 
+	 * ejecutamos directamente el borrado por medio del id
+	 */
+	@Override
+	public void delete(CuentaDTO cuentaDTO, ClienteDTO clienteDTO) {
+		log.info("CuentaServiceImpl - delete: Metodo 1: borramos la cuenta: " + cuentaDTO.toString());
+		// Localizamos ambos objetos
+		Optional<Cliente> cliente = clienteRepository.findById(clienteDTO.getId());
+		Optional<Cuenta> cuenta = cuentaRepository.findById(cuentaDTO.getId());
+		
+		// Eliminamos la cuenta de la lista de cuentas del cliente. 
+		// Con esto eliminamos la relacion y podemos borrar la cuenta
+		cliente.get().getListaCuentas().remove(cuenta.get());
+		
+		// Eliminamos la cuenta
+ 		cuentaRepository.deleteById(cuenta.get().getId());
+ 		
+ 		// Salvamos el cliente con la nueva situacioni
+		clienteRepository.save(cliente.get());
+	}	
 
 	@Override
 	public void save(CuentaDTO cuentaDTO) {
@@ -50,5 +88,5 @@ public class CuentaServiceImpl implements CuentaService {
 		cuenta.setCliente(cliente);
  
 		cuentaRepository.save(cuenta);
-	}
+	}	
 }
