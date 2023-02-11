@@ -75,17 +75,10 @@ public class DireccionController {
 		ClienteDTO clienteDTO = new ClienteDTO();
 		clienteDTO.setId(idCliente);
 		clienteDTO = clienteService.findById(clienteDTO);
-		// Creamos una entidad que soporta la relacion n a n
-		ClienteDireccionDTO cdDTO = new ClienteDireccionDTO();
-		cdDTO.setClienteDTO(clienteDTO);
-		cdDTO.setDireccionDTO(direccionDTO);
-		// Asignamos el timestamp (fecha y hora actual)
-		Timestamp ts = Timestamp.from(Instant.now());
-		cdDTO.setFechaAlta(ts);
-		clienteDTO.getListaClientesDireccionesDTO().add(cdDTO);
+
 		// Anyadimos a la direccion el cliente. En este momento solo habra un clienteDTO
 		direccionDTO.getListaClientesDTO().add(clienteDTO);
-		direccionService.save(direccionDTO, cdDTO);
+		direccionService.save(direccionDTO);
 		// Redireccionamos para volver a invocar el metodo que escucha /clientes
 		ModelAndView mav = new ModelAndView("redirect:/clientes/{idCliente}/direcciones");
 		return mav;

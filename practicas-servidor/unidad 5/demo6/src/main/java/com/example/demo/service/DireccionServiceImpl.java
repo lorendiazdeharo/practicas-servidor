@@ -69,7 +69,7 @@ public class DireccionServiceImpl implements DireccionService {
 	}
 
 	@Override
-	public void save(DireccionDTO direccionDTO, ClienteDireccionDTO cdDTO) {
+	public void save(DireccionDTO direccionDTO) {
 
 		log.info("DireccionServiceImpl - save: Salva la direccion del cliente: "
 				+ direccionDTO.getListaClientesDTO().get(0).getId());
@@ -86,8 +86,6 @@ public class DireccionServiceImpl implements DireccionService {
 			direccionRepository.save(direccion);			
 		} 
 		*/
-		
-		  log.info("DireccionServiceImpl - save: Salvamos la direccion");
 
 		// Obtenemos la entidad cliente
 		Optional<Cliente> cliente = clienteRepository.findById(direccionDTO.getListaClientesDTO().get(0).getId());
@@ -96,11 +94,18 @@ public class DireccionServiceImpl implements DireccionService {
 		Direccion direccion = DireccionDTO.convertToEntity(direccionDTO, cliente.get());
 		direccionRepository.save(direccion);
 
-		// Hay que almacenar la relacion intermedia, que es ClienteDireccion
-		ClienteDireccion cd = new ClienteDireccion();
-		cd.setCliente(cliente.get());
-		cd.setDireccion(direccion);
-		cd.setFechaAlta(cdDTO.getFechaAlta());
+		// Hay que almacenar la relacion intermedia, que es ClienteDireccion, ya sea nueva o una actualizacion
+		ClienteDireccion cd = null;
+		Optional<ClienteDireccion> cdo = clienteDireccionRepository.findAllByClienteDireccion(cliente.get().getId(), direccion.getId()); 
+		if(cdo.isPresent()) {
+			cd = cdo.get();		
+			cd.setFechaAlta(new Date());
+		}else {
+			cd = new ClienteDireccion();
+			cd.setCliente(cliente.get());
+			cd.setDireccion(direccion);			
+			cd.setFechaAlta(new Date());			
+		}
 		clienteDireccionRepository.save(cd);
 	}
 }

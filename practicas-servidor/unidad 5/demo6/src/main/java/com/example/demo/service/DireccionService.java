@@ -9,6 +9,6 @@ import com.example.demo.model.dto.DireccionDTO;
 public interface DireccionService {
 
 	public List<ClienteDireccionDTO> findAllByCliente(ClienteDTO clienteDTO);
-	public void save(DireccionDTO direccionDTO, ClienteDireccionDTO cdDTO) ;
+	public void save(DireccionDTO direccionDTO) ;
 
 }
