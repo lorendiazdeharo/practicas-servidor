@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Mantenimiento de movimientos</title>
+</head>
+<body>
+	<header th:insert="~{fragments/header.html}"></header>
+	<br>	
+	<div>
+		<br>
+		<h2 th:if="${listaMovimientosDTO.isEmpty()}">No hay Movimientos</h2>
+		<div th:if="${!listaMovimientosDTO.isEmpty()}">
+			<h2>Mantenimiento de Movimientos</h2>	
+			
+			<table border="1">
+				<thead>
+					<tr>
+						<td>id</td>
+						<td>Tipo</td>
+						<td>Fecha Operacion</td>
+						<td>Descripcion</td>
+						<td>Importe</td>
+						<td>Cuenta Origen</td>
+						<td>Cuenta Destino</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="movimientoDTO : ${listaMovimientosDTO}">
+						<td th:text="${movimientoDTO.id}"></td>
+						<td th:text="${movimientoDTO.tipo}"></td>
+						<td th:text="${#dates.format(movimientoDTO.fechaOperacion, 'dd/MM/yyyy hh:mm:ss')}" />
+						<td th:text="${movimientoDTO.descripcion}" />
+						<td th:text="${movimientoDTO.importe}" />
+						<td th:text="${movimientoDTO.cuentaOrigenDTO.toString()}" />
+						<td th:text="${movimientoDTO.cuentaDestinoDTO.toString()}" />							
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<br>
+	<div>
+		<br> 
+		<a th:href="@{/clientes/{idCliente}/cuentas (idCliente=${clienteDTO.id})}">Volver a la lista de cuentas</a>
+	</div>
+</body>
+</html>

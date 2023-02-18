@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<!-- SI SE HA AUTENTICADO -->
+	<div sec:authorize="isAuthenticated()">
+        <h1 th:inline="text">Hola <span th:remove="tag" sec:authentication="name"> </span>!</h1>
+        <b>Roles:</b> <span sec:authentication="principal.authorities">Roles</span>
+        <br>
+        <br>        
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Logout"/>
+        </form>	
+	</div>
+	<!-- SI NO SE HA AUTENTICADO -->
+	<div sec:authorize="isAnonymous()">
+   		<div th:text="'No está logueado.'"></div>
+        <a href="/login">Login</a> 
+        <br>
+        <a href="/register">Registro</a> 
+	</div>
+</body>
+</html>

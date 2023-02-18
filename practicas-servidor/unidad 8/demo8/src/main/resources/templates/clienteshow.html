@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Visualizar cliente</title>
+</head>
+<body>
+	<header th:insert="~{fragments/header.html}"></header>
+	<br>	
+	<h1>Visualizar cliente</h1>
+	<br>
+	<table border="0">
+		<tr>
+			<td>id</td>
+			<td>:</td>
+			<td th:text="${clienteDTO.id}"></td>
+		</tr>
+		<tr>
+			<td>Nombre</td>
+			<td>:</td>
+			<td th:text="${clienteDTO.nombre}"></td>
+		</tr>
+		<tr>
+			<td>Apellidos</td>
+			<td>:</td>
+			<td th:text="${clienteDTO.apellidos}"></td>
+		</tr>
+		<tr>
+			<td>NIF</td>
+			<td>:</td>
+			<td th:text="${clienteDTO.nif}"></td>
+		</tr>
+		<tr>
+			<td>Correo electrónico</td>
+			<td>:</td>
+			<td th:text="${clienteDTO.email}"></td>
+		</tr>
+		<tr>
+			<td>Clave seguridad</td>
+			<td>:</td>
+			<td th:text="${clienteDTO.claveSeguridad}"></td>
+		</tr>
+		<tr>
+			<td>Fecha Nacimiento</td>
+			<td>:</td>
+			<td th:text="${#dates.format(clienteDTO.fechaNacimiento, 'dd/MM/yyyy')}"></td>
+		</tr>
+		<tr>
+			<td>Recomendación</td>
+			<td>:</td>
+			<td th:text="${clienteDTO.recomendacionDTO.observaciones}"></td>
+		</tr>
+	</table>
+	<br>
+	<br>
+	<a th:href="@{/clientes}">Volver a la lista de clientes</a>
+</body>
+</html>

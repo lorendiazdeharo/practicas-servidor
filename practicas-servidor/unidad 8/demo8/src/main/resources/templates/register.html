@@ -1,0 +1,28 @@
+<!--register.html-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Login</title>
+</head>
+<body>
+  <form th:action="@{/users/save}" th:object="${usuarioDTO}" method="post">
+    <h3>Registration</h3>
+    <input type="text" th:field="*{username}" placeholder="Username" /> <br/><br/>
+    <input type="password" th:field="*{password}" placeholder="Password" /> <br/><br/>
+    <label>Roles:
+        <input type="checkbox" name="roles"
+            text="ADMIN"
+            value="ROLE_ADMIN"
+            >ADMIN</input>
+        <input type="checkbox" name="roles"
+            text="USER"
+            value="ROLE_USER"
+            >USER</input>            
+    </label>    
+    <br>
+    <br>
+    
+    <button type="submit">Register</button> | <a th:href="@{|/login|}" th:text="'Log in'"></a>
+</form>
+</body>
+</html>
