@@ -62,9 +62,7 @@ public class ClienteServiceImpl implements ClienteService{
 	public void delete(ClienteDTO clienteDTO) {
 		log.info("ClienteServiceImpl - delete: Borramos el cliente: " + clienteDTO.getId());
 		
-		Cliente cliente = new Cliente();
-		cliente.setId(clienteDTO.getId());
-		clienteRepository.delete(cliente);
+		clienteRepository.deleteById(clienteDTO.getId());
 	}
 	
 	@Override
