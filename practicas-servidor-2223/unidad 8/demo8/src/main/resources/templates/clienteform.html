@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${add} ? 'Nuevo cliente' : 'Actualizar cliente'"></title>
+</head>
+<body>
+	<header th:insert="~{fragments/header.html}"></header>
+	<h1 th:text="${add} ? 'Nuevo cliente' : 'Actualizar cliente'" />
+	<br>
+	<br>
+	<form th:action="@{/clientes/save}" th:object="${clienteDTO}"
+		method="POST">
+		<table border="0">
+			<tr th:if="${clienteDTO.id}">
+				<td>id</td>
+				<td>:</td>
+				<td> <input type="text" th:field="*{id}" readonly/> </td>
+			</tr>
+			<tr>
+				<td>Nombre</td>
+				<td>:</td>
+				<td> <input type="text" th:field="*{nombre}" /> </td>
+			</tr>
+			<tr>
+				<td>Apellidos</td>
+				<td>:</td>
+				<td> <input type="text" th:field="*{apellidos}" /> </td>
+			</tr>
+			<tr>
+				<td>NIF</td>
+				<td>:</td>
+				<td> <input type="text" th:field="*{nif}" /> </td>
+			</tr>
+			<tr>
+				<td>Correo electrónico</td>
+				<td>:</td>
+				<td> <input type="text" th:field="*{email}" /> </td>
+			</tr>
+			<tr>
+				<td>Clave seguridad</td>
+				<td>:</td>
+				<td> <input type="text" th:field="*{claveSeguridad}" /> </td>
+			</tr>			
+			<tr>
+				<td>Fecha Nacimiento</td>
+				<td>:</td>
+				<td> <input type="date" th:field="*{fechaNacimiento}" /> </td>
+			</tr>			
+			<tr>
+				<td>Recomendación</td>
+				<td>:</td>
+				<td> <textarea th:field="*{recomendacionDTO.observaciones}" rows="4" cols="50" /> </td>
+			</tr>			
+			
+			<!-- Ocultamos el id de la recomendacion del cliente -->
+			<input type="hidden" th:field="*{recomendacionDTO.id}"> 
+			
+		</table>
+		<input type="submit" th:value="${add} ? 'Nuevo' : 'Actualizar'" />		
+	</form>
+	<br>
+	<a th:href="@{/clientes}">Volver a la lista de clientes</a>
+</body>
+</html>

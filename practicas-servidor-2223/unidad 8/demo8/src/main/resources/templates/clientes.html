@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<meta charset="UTF-8">
+	<title>Mantenimiento de clientes</title>
+</head>
+<body>
+	<header th:insert="~{fragments/header.html}"></header>
+	<br>	
+	<div>
+		<br>
+		<h2 th:if="${listaClientesDTO.isEmpty()}">No hay clientes</h2>
+		<div th:if="${!listaClientesDTO.isEmpty()}">
+			<h2>Mantenimiento de clientes</h2>	
+			
+			<table border="1">
+				<thead>
+					<tr>
+						<td>id</td>
+						<td>Nombre</td>
+						<td>Apellidos</td>
+						<td>NIF</td>
+						<td>Correo electrónico</td>
+						<td>Fecha nacimiento</td>
+						<td sec:authorize="hasRole('ROLE_ADMIN')">Editar</td>
+						<td sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</td>
+						<th>Cuentas</th>
+						<th>Direcciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="clienteDTO : ${listaClientesDTO}">
+						<td><a
+							th:href="@{/clientes/{idCliente}(idCliente=${clienteDTO.id})}"
+							th:text="${clienteDTO.id}"></a></td>
+						<td th:text="${clienteDTO.nombre}" />
+						<td th:text="${clienteDTO.apellidos}" />
+						<td th:text="${clienteDTO.nif}" />
+						<td th:text="${clienteDTO.email}" />
+						<td th:text="${#dates.format(clienteDTO.fechaNacimiento, 'dd/MM/yyyy')}" />
+						<td sec:authorize="hasRole('ROLE_ADMIN')"><a
+							th:href="@{/clientes/update/{idCliente}(idCliente=${clienteDTO.id})}" />Editar</a></td>
+						<td sec:authorize="hasRole('ROLE_ADMIN')"><a
+							th:href="@{/clientes/delete/{idCliente}(idCliente=${clienteDTO.id})}" />Eliminar</a></td>
+						<td><a 
+							th:href="@{/clientes/{idCliente}/cuentas (idCliente=${clienteDTO.id})}">Cuentas</a></td>
+						<td><a 
+							th:href="@{/clientes/{idCliente}/direcciones (idCliente=${clienteDTO.id})}">Direcciones</a></td>	
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<br>
+	<div>
+		<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/clientes/add}">Nuevo cliente</a> 
+		<br> 
+		<a th:href="@{/}">Volver al inicio</a>
+	</div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Mantenimiento de cuentas</title>
+</head>
+<body>
+	<header th:insert="~{fragments/header.html}"></header>
+	<br>	
+	<div>
+		<br>
+		<h2 th:if="${listaCuentasDTO.isEmpty()}">No hay cuentas para el cliente 
+			<td th:utext="${clienteDTO.nombre}"></td> <td th:utext="${clienteDTO.apellidos}"></td>
+		</h2>
+		<div th:if="${!listaCuentasDTO.isEmpty()}">
+			<h2>Mantenimiento de cuentas del cliente 
+				<td th:utext="${clienteDTO.nombre}"></td> <td th:utext="${clienteDTO.apellidos}"></td>
+			</h2>
+			<br>
+			<table border="1">
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>Banco</th>
+						<th>Sucursal</th>
+						<th>dc</th>
+						<th>Número de cuenta</th>
+						<th>Saldo actual</th>
+						<th sec:authorize="hasRole('ROLE_ADMIN')" >Movimientos</th>
+						<th sec:authorize="hasRole('ROLE_ADMIN')" >Eliminar</th>					
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="cuentaDTO : ${listaCuentasDTO}">
+						<td th:utext="${cuentaDTO.id}">...</td>
+						<td th:utext="${cuentaDTO.banco}">...</td>
+						<td th:utext="${cuentaDTO.sucursal}">...</td>
+						<td th:utext="${cuentaDTO.dc}">...</td>
+						<td th:utext="${cuentaDTO.numeroCuenta}">...</td>
+						<td th:utext="${cuentaDTO.saldoActual}">...</td>
+						<td sec:authorize="hasRole('ROLE_ADMIN')" ><a th:href="@{/clientes/{idCliente}/cuentas/{idCuenta}/movimientos (idCliente=${clienteDTO.id},idCuenta=${cuentaDTO.id})}">Visualizar movimientos</a></td>
+						<td sec:authorize="hasRole('ROLE_ADMIN')" ><a th:href="@{/clientes/{idCliente}/cuentas/{idCuenta}/delete/ (idCliente=${clienteDTO.id},idCuenta=${cuentaDTO.id})}">Eliminar</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<br>
+		<div>
+			<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/clientes/{idCliente}/cuentas/add (idCliente=${clienteDTO.id})}">Nueva cuenta</a>
+			<br>
+			<a th:href="@{/clientes}">Volver a la lista de clientes</a>
+		</div>
+	</div>
+</body>
+</html>

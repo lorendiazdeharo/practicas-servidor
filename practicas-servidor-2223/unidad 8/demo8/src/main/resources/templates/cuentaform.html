@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title th:utext="${add} ? 'Crear una cuenta' : 'Editar una cuenta'" /> 
+ </head>
+
+<body>
+	<header th:insert="~{fragments/header.html}"></header>
+	<br>	
+    <h1 th:text="${add} ? 'Crear una cuenta' : 'Editar una cuenta'" /> 
+    <br/>
+    <br/>
+    <form th:action="@{/clientes/{idCliente}/cuentas/save (idCliente=${clienteDTO.id})}" th:object="${cuentaDTO}" method="POST">
+        <table border="0">
+            <tr th:if="${cuentaDTO.id}">
+                <td>ID</td>
+                <td>:</td>
+                <td>
+                	<input type="text" th:field="*{id}" readonly />
+                </td> 
+            </tr>
+            <tr>
+                <td>Banco</td>
+                <td>:</td>
+                <td>
+                    <input type="text" th:field="*{banco}" />
+                </td>
+            </tr>
+            <tr>
+                <td>Sucursal</td>
+                <td>:</td>
+                <td>
+                    <input type="text" th:field="*{sucursal}" />
+                </td>
+            </tr>
+            <tr>
+                <td>Dígito de control</td>
+                <td>:</td>
+                <td>
+                    <input type="text" th:field="*{dc}" />
+                </td>
+            </tr>   
+            <tr>
+                <td>Número de cuenta</td>
+                <td>:</td>
+                <td>
+                    <input type="text" th:field="*{numeroCuenta}" />
+                </td>
+            </tr>    
+            <tr th:if="${cuentaDTO.id}">
+                <td>Saldo actual</td>
+                <td>:</td>
+                <td>
+                	<input type="text" th:field="*{saldoActual}" readonly />
+                </td> 
+            </tr>     
+        </table>
+        <input type="submit" th:value="${add} ? 'Crear' : 'Actualizar'" /> </form>
+    <br/>
+    <br/>    
+    <a th:href="@{/clientes/{idCliente}/cuentas (idCliente=${clienteDTO.id})}">Volver a la lista de cuentas</a>
+</html>

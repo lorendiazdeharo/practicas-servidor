@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Mantenimiento de direcciones</title>
+</head>
+<body>
+	<header th:insert="~{fragments/header.html}"></header>
+	<br>	
+	<div>
+		<br>
+		<h2 th:if="${listaClientesDireccionesDTO.isEmpty()}">No hay direcciones para el cliente 
+			<td th:utext="${clienteDTO.nombre}"></td> <td th:utext="${clienteDTO.apellidos}"></td>
+		</h2>
+		<div th:if="${!listaClientesDireccionesDTO.isEmpty()}">
+			<h2>Mantenimiento de direcciones del cliente 
+				<td th:utext="${clienteDTO.nombre}"></td> <td th:utext="${clienteDTO.apellidos}"></td>
+			</h2>
+			<br>
+			<table border="1">
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>Direccion</th>
+						<th>País</th>
+						<th>CP</th>		
+						<th>Fecha Alta</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="clienteDireccionDTO : ${listaClientesDireccionesDTO}">
+						<td th:utext="${clienteDireccionDTO.direccionDTO.id}">...</td>
+						<td th:utext="${clienteDireccionDTO.direccionDTO.descripcion}">...</td>
+						<td th:utext="${clienteDireccionDTO.direccionDTO.pais}">...</td>
+						<td th:utext="${clienteDireccionDTO.direccionDTO.cp}">...</td>
+						<!--  formateamos la fecha para verla en formato correcto y quitamos los segundos y milisegundos -->
+					    <td th:text="${#dates.format(clienteDireccionDTO.fechaAlta, 'dd-MM-yyyy HH:mm')}">...</td>							
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<br>
+		<div>
+			<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/clientes/{idCliente}/direcciones/add (idCliente=${clienteDTO.id})}" >Nueva direccion</a>
+			</br>
+			<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/clientes/{idCliente}/direcciones/addselect (idCliente=${clienteDTO.id})}" >Añadir dirección ya existente</a>
+			</br>			
+			<a th:href="@{/clientes}">Volver a la lista de clientes</a>
+		</div>
+	</div>
+</body>
+</html>
