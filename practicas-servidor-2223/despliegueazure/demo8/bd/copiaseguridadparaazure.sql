@@ -2,9 +2,9 @@ CREATE DATABASE  IF NOT EXISTS `demospringboot` /*!40100 DEFAULT CHARACTER SET l
 USE `demospringboot`;
 -- MySQL dump 10.13  Distrib 8.0.31, for macos12 (x86_64)
 --
--- Host: localhost    Database: demospringboot
+-- Host: servidordaw.mysql.database.azure.com    Database: demospringboot
 -- ------------------------------------------------------
--- Server version	8.0.31
+-- Server version	8.0.32
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -42,7 +42,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'44999594K','Keiko','Meadows','1732','meadowskeiko6933@icloud.net',NULL),(2,'28553744Y','Whoopi','Phelps','4488','w-phelps@aol.ca',NULL),(3,'25861374E','Hilary','Mcmahon','5418','hmcmahon6589@google.org',NULL),(4,'12242423G','Hunter','Frederick','1332','h_frederick@icloud.edu',NULL),(5,'51724739D','Diana','Dickerson','5053','d-dickerson5965@aol.net',NULL),(6,'13176696D','Amber','Ramirez','2375','amber.ramirez6505@protonmail.org',NULL),(7,'82568848H','Chava','Floyd','3011','cfloyd@hotmail.couk',NULL),(8,'03768520L','Tatum','Walsh','2463','walsh_tatum2491@outlook.couk',NULL),(9,'51976869H','Ezekiel','Woodard','2707','e-woodard@icloud.couk',NULL),(10,'55172493N','Coby','Lester','9856','c-lester7681@hotmail.couk',NULL),(11,'48037186R','Brielle','Howard','7848','b_howard@aol.com',NULL),(12,'71227610F','Candace','Bates','4990','c-bates@google.org',NULL),(13,'41124626J','Eagan','Carpenter','2060','e_carpenter9768@outlook.org',NULL),(14,'86926685Y','Yvette','Slater','6646','yslater@google.edu',NULL),(15,'18829162J','Heather','Abbott','9983','abbottheather@hotmail.org',NULL),(16,'10159358C','Kessie','Rich','4285','k_rich804@google.net',NULL),(17,'61816073X','Keelie','Forbes','1844','k-forbes1767@hotmail.com',NULL),(18,'27682739N','Dale','Glass','2545','gdale@google.ca',NULL),(19,'91124511M','Farrah','Farmer','5208','farrah-farmer6033@hotmail.com',NULL),(20,'21865746E','Graham','Casey','6223','g.casey3482@google.com',NULL),(24,'adfasfd','jose','Muñoz','12345','linuxero@gmail.com','2013-07-09');
+INSERT INTO `clientes` VALUES (1,'44999594K','Keiko','Meadows','1732','meadowskeiko6933@icloud.net',NULL),(2,'28553744Y','Whoopi','Phelps','4488','w-phelps@aol.ca',NULL),(3,'25861374E','Hilary','Mcmahon','5418','hmcmahon6589@google.org',NULL),(4,'12242423G','Hunter','Frederick','1332','h_frederick@icloud.edu',NULL),(5,'51724739D','Diana','Dickerson','5053','d-dickerson5965@aol.net',NULL),(6,'13176696D','Amber','Ramirez','2375','amber.ramirez6505@protonmail.org',NULL),(7,'82568848H','Chava','Floyd','3011','cfloyd@hotmail.couk',NULL),(8,'03768520L','Tatum','Walsh','2463','walsh_tatum2491@outlook.couk',NULL),(9,'51976869H','Ezekiel','Woodard','2707','e-woodard@icloud.couk',NULL),(10,'55172493N','Coby','Lester','9856','c-lester7681@hotmail.couk',NULL),(11,'48037186R','Brielle','Howard','7848','b_howard@aol.com',NULL),(12,'71227610F','Candace','Bates','4990','c-bates@google.org',NULL),(13,'41124626J','Eagan','Carpenter','2060','e_carpenter9768@outlook.org',NULL),(14,'86926685Y','Yvette','Slater','6646','yslater@google.edu',NULL),(15,'18829162J','Heather','Abbott','9983','abbottheather@hotmail.org',NULL),(16,'10159358C','Kessie','Rich','4285','k_rich804@google.net',NULL),(17,'61816073X','Keelie','Forbes','1844','k-forbes1767@hotmail.com',NULL),(18,'27682739N','Dale','Glass','2545','gdale@google.ca',NULL),(19,'91124511M','Farrah','Farmer','5208','farrah-farmer6033@hotmail.com',NULL),(20,'21865746E','Graham','Casey','6223','g.casey3482@google.com',NULL),(24,'adfasfd','jose','adfasdf','asdfasd','linuxero@gmail.com','2013-07-09');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -296,7 +296,7 @@ DROP TABLE IF EXISTS `roles`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `roles` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) COLLATE latin1_spanish_ci NOT NULL,
+  `nombre` varchar(45) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
   `idusuario` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FG_USUARIOS_idx` (`idusuario`),
@@ -353,8 +353,8 @@ DROP TABLE IF EXISTS `usuarios`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuarios` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(100) COLLATE latin1_spanish_ci DEFAULT NULL,
-  `password` varchar(128) COLLATE latin1_spanish_ci NOT NULL,
+  `username` varchar(100) CHARACTER SET latin1 COLLATE latin1_spanish_ci DEFAULT NULL,
+  `password` varchar(128) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
@@ -379,4 +379,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-30 22:44:36
+-- Dump completed on 2023-06-01 23:17:10
