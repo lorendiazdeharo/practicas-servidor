@@ -1,0 +1,12 @@
+Unidad 2 - Video 11 - Relacionando Servlets, JSP y JavaBeans : https://youtu.be/yatUCN387lM
+Unidad 2 - Video 10 - Ejemplo ámbitos de los objetos : https://youtu.be/FDqNCxLE96I
+Unidad 2 - Video 9 - Ejemplo captura datos desde un Servlet : https://youtu.be/fxYkqKGusCM
+Unidad 2 - Video 8 - Ejemplo Ciclo Vida Servlet : https://youtu.be/2cGrjIq---c
+Unidad 2 - Video 7 - Ejemplo Primer Servlet : https://youtu.be/lcw--yPTX4A
+Unidad 2 - Video 6 - Ejemplo Formularios JSP con JavaBeans : https://youtu.be/T2_EKHAp6rg
+Unidad 2 - Video 5 - Ejemplo Formularios JSP : https://youtu.be/qNTwrGcBfvQ
+Unidad 2 - Video 4 - Ejemplo Forward JSP : https://youtu.be/8E8ImoFad3s
+Unidad 2 - Video 3 -  Ejemplo Variables Predefinidas JSP : https://youtu.be/TaR7drr6kig
+Unidad 2 - Video 2 - Ejemplo Scripts JSP : https://youtu.be/GIh_FUFMews
+Unidad 2 - Video 1 -  Ejemplo Directivas JSP : https://youtu.be/XSws0GZtOVo
+Unidad 2 - Video 0 - Preparando entorno inicial en Windows : https://youtu.be/Uw10xRFjUBA
