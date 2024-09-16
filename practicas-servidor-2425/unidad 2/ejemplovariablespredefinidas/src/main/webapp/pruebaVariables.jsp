@@ -2,6 +2,7 @@
     Document   : pruebaVariables.jsp
     Created on : 9 sept 2022, 21:52:53
     Author     : lodiade
+    Ejemplo: 2
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

@@ -2,6 +2,7 @@
     Document   : pruebaAccionForward
     Created on : 9 sept 2022, 23:40:53
     Author     : lodiade
+    Ejemplo: 4
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

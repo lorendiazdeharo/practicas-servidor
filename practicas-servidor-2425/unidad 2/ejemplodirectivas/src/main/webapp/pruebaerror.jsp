@@ -2,6 +2,7 @@
     Document   : pruebaerror
     Created on : 8 sept 2022, 19:15:39
     Author     : lodiade
+    Ejemplo: 1
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

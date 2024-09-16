@@ -2,6 +2,7 @@
     Document   : pruebascriptsJSP
     Created on : 8 sept 2022, 21:17:30
     Author     : lodiade
+    Ejemplo: 3
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
