@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="installedFeatures">
+		<item value="com.basistech.m2e.code.quality.pmd.feature:2.2.0.202404151854-r"/>
+		<item value="net.sourceforge.pmd.eclipse:7.5.0.v20240830-0910-r"/>
+		<item value="org.eclipse.buildship:3.1.9.v20240115-1636"/>
+		<item value="org.eclipse.egit.gitflow.feature:7.0.0.202409031743-r"/>
+		<item value="org.eclipse.egit:7.0.0.202409031743-r"/>
+		<item value="org.eclipse.emf.common:2.32.0.v20240731-0952"/>
+		<item value="org.eclipse.emf.ecore:2.38.0.v20240721-0802"/>
+		<item value="org.eclipse.epp.mpc:1.11.0.v20240709-1650"/>
+		<item value="org.eclipse.fx.ide.css.feature:3.8.0.202204150904"/>
+		<item value="org.eclipse.help:2.3.1900.v20240903-0240"/>
+		<item value="org.eclipse.jdt:3.19.600.v20240903-0240"/>
+		<item value="org.eclipse.jgit.gpg.bc:7.0.0.202409031743-r"/>
+		<item value="org.eclipse.jgit.http.apache:7.0.0.202409031743-r"/>
+		<item value="org.eclipse.jgit.lfs:7.0.0.202409031743-r"/>
+		<item value="org.eclipse.jgit.ssh.apache:7.0.0.202409031743-r"/>
+		<item value="org.eclipse.jgit:7.0.0.202409031743-r"/>
+		<item value="org.eclipse.jst.common.fproj.enablement.jdt:3.30.0.v202405122323"/>
+		<item value="org.eclipse.justj.openjdk.hotspot.jre.full:21.0.4.v20240802-1551"/>
+		<item value="org.eclipse.m2e.feature:2.6.2.20240828-1954"/>
+		<item value="org.eclipse.m2e.logback.feature:2.6.1.20240411-1743"/>
+		<item value="org.eclipse.m2e.wtp.feature:1.6.1.20231024-1618"/>
+		<item value="org.eclipse.mylyn.wikitext.editors_feature:3.0.42.202201072301"/>
+		<item value="org.eclipse.pde:3.16.0.v20240903-0240"/>
+		<item value="org.eclipse.platform:4.33.0.v20240903-0618"/>
+		<item value="org.eclipse.rcp:4.33.0.v20240903-0618"/>
+		<item value="org.eclipse.tm.terminal.connector.ssh.feature:11.6.1.202406241230"/>
+		<item value="org.eclipse.tm.terminal.control.feature:11.6.1.202407022003"/>
+		<item value="org.eclipse.tm.terminal.feature:11.6.1.202406241230"/>
+		<item value="org.eclipse.tm.terminal.view.feature:11.6.1.202406241230"/>
+		<item value="org.eclipse.userstorage:1.2.0.v20210517-0327"/>
+		<item value="org.eclipse.wst.common.fproj:3.7.4.v202308161955"/>
+		<item value="org.eclipse.wst.xml_ui.feature:3.34.0.v202404170147"/>
+		<item value="org.eclipse.xtend.sdk:2.29.0.v20221121-1054"/>
+		<item value="org.eclipse.xtext.sdk:2.29.0.v20221121-1054"/>
+		<item value="org.eclipse.xtext.ui:2.29.0.v20221121-1054"/>
+		<item value="org.eclipse.xtext.xbase.lib:2.29.0.v20221121-0916"/>
+		<item value="org.eclipse.xtext.xbase:2.29.0.v20221121-1054"/>
+		<item value="org.eclipse.xtext.xtext.ui.graph:2.29.0.v20221121-1054"/>
+		<item value="org.eclipse.xtext.xtext.ui:2.29.0.v20221121-1054"/>
+		<item value="org.jboss.tools.m2e.wro4j.feature:1.2.1.202301111328"/>
+		<item value="org.zkoss.eclipse:2.0.5.v202202111348"/>
+	</list>
+</section>
