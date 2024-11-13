@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Mantenimiento de cuentas</title>
+</head>
+<body>
+	<div>
+		<br>
+		<h2 th:if="${listaCuentasDTO.isEmpty()}">No hay cuentas</h2>
+		<div th:if="${!listaCuentasDTO.isEmpty()}">
+			<h2>Mantenimiento de Cuentas</h2>
+			<br>
+			<h3 th:text="'Cliente: ' + ${clienteDTO.nombre} + ' ' + ${clienteDTO.apellidos}" ></h3>
+			<table border="1">
+				<thead>
+					<tr>
+						<td>id</td>
+						<td>Banco</td>
+						<td>Sucursal</td>
+						<td>DC</td>
+						<td>Numero de cuenta</td>
+						<td>Saldo Actual</td>
+						<td>Eliminar</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="cuentaDTO : ${listaCuentasDTO}">
+						<td th:text="${cuentaDTO.id}" />
+						<td th:text="${cuentaDTO.banco}" />
+						<td th:text="${cuentaDTO.sucursal}" />
+						<td th:text="${cuentaDTO.dc}" />
+						<td th:text="${cuentaDTO.numeroCuenta}" />
+						<td th:text="${cuentaDTO.saldoActual}" />	
+						<td><a
+							th:href="@{/clientes/{idCliente}/cuentas/{idCuenta}/delete (idCliente=${cuentaDTO.clienteDTO.id}, idCuenta=${cuentaDTO.id})}" />Eliminar</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<br>
+	<div>
+
+		<a th:href="@{/clientes}">Volver a los clientes</a>
+	</div>
+</body>
+</html>
